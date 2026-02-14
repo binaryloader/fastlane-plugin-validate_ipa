@@ -1,0 +1,8 @@
+lane :test do
+  validate_ipa(
+    path: "result/test.ipa",
+    platform: "ios",
+    username: "username",
+    password: "password"
+  )
+end
