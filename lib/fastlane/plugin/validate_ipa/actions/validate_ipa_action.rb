@@ -24,8 +24,13 @@ module Fastlane
         split_result = output.split("\n")
         result = split_result[-1]
         plist = Plist.parse_xml(result)
+
+        if plist.nil?
+          UI.user_error!("Failed to parse altool output. Raw output:\n#{output}")
+        end
+
         errors = plist["product-errors"]
-        
+
         if errors.nil?
           UI.success("IPA validation success => " + plist["success-message"])
         else
