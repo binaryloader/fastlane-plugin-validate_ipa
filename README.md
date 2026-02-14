@@ -1,9 +1,7 @@
-# validate_ipa plugin
+# fastlane-plugin-validate_ipa
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
 [![Gem Version](https://badge.fury.io/rb/fastlane-plugin-validate_ipa.svg)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
-
-## About
 
 A [fastlane](https://github.com/fastlane/fastlane) plugin that validates IPA files using Apple's `altool`.
 
@@ -34,18 +32,12 @@ lane :validate do
 end
 ```
 
-### Parameters
-
 | Key | Description | Env Var | Required |
 |-----|-------------|---------|----------|
 | `path` | Path to the IPA file | `FL_VALIDATE_IPA_PATH` | Yes |
 | `platform` | Target platform (`ios` or `macos`) | `FL_VALIDATE_IPA_PLATFORM` | Yes |
 | `username` | Apple ID | `FL_VALIDATE_IPA_USERNAME` | Yes |
 | `password` | Apple ID or app-specific password | `FL_VALIDATE_IPA_PASSWORD` | Yes |
-
-## Issues and Feedback
-
-For any issues and feedback, please [open an issue](https://github.com/binaryloader/fastlane-plugin-validate_ipa/issues).
 
 ## License
 
