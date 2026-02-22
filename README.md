@@ -1,7 +1,7 @@
 # fastlane-plugin-validate_ipa
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
-[![Gem Version](https://badge.fury.io/rb/fastlane-plugin-validate_ipa.svg)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
+[![Gem Version](https://img.shields.io/gem/v/fastlane-plugin-validate_ipa?style=flat)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
 
 A [fastlane](https://github.com/fastlane/fastlane) plugin that validates IPA files using Apple's `altool` before uploading to App Store Connect. This plugin improves upon the unmaintained [validate_app](https://github.com/fastlane-community/fastlane-plugin-validate_app) plugin.
 
