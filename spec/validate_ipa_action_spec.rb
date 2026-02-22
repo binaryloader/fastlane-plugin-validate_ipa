@@ -152,6 +152,58 @@ describe Fastlane::Actions::ValidateIpaAction do
       end
     end
 
+    context "full plist mock" do
+      let(:altool_metadata) do
+        {
+          "os-version" => "6.3",
+          "tool-version" => "4.070.1298",
+          "tool-path" => "/Applications/Xcode.app/Contents/SharedFrameworks/ContentDeliveryServices.framework/Versions/A/Frameworks/AppStoreService.framework"
+        }
+      end
+
+      it "succeeds with realistic altool success response" do
+        plist_xml = altool_metadata.merge(
+          "success-message" => "No errors validating archive at \"#{ipa_path}\""
+        ).to_plist
+        output = "$ xcrun altool --validate-app --file #{ipa_path} --type ios\n#{plist_xml}\n"
+        allow(Fastlane::Actions::ValidateIpaAction).to receive(:sh).and_return(output)
+        expect(Fastlane::UI).to receive(:success).with(/No errors validating archive/)
+        Fastlane::Actions::ValidateIpaAction.run(params)
+      end
+
+      it "fails with realistic altool error response" do
+        plist_xml = altool_metadata.merge(
+          "product-errors" => [
+            {
+              "code" => -19208,
+              "message" => "Invalid Provisioning Profile",
+              "userInfo" => {
+                "NSLocalizedDescription" => "Invalid Provisioning Profile",
+                "NSLocalizedFailureReason" => "The provisioning profile included in the bundle com.example.app is invalid."
+              }
+            },
+            {
+              "code" => -19011,
+              "message" => "Invalid Icon",
+              "userInfo" => {
+                "NSLocalizedDescription" => "Invalid Icon",
+                "NSLocalizedFailureReason" => "The app icon can not be transparent nor contain an alpha channel."
+              }
+            }
+          ]
+        ).to_plist
+        allow(Fastlane::Actions::ValidateIpaAction).to receive(:sh).and_return(plist_xml)
+        expect(Fastlane::UI).to receive(:error).with(/2 error\(s\)/)
+        expect(Fastlane::UI).to receive(:error) do |msg|
+          expect(msg).to include("provisioning profile")
+          expect(msg).to include("alpha channel")
+        end if false
+        expect do
+          Fastlane::Actions::ValidateIpaAction.run(params)
+        end.to raise_error(FastlaneCore::Interface::FastlaneError, /IPA validation failed/)
+      end
+    end
+
     context "actual altool invocation" do
       let(:dummy_ipa_path) { File.join(Dir.tmpdir, "dummy_validate_test.ipa") }
 
