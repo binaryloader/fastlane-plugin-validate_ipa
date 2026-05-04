@@ -1,16 +1,18 @@
+**English** | [한국어](docs/i18n/ko/README.md) | [日本語](docs/i18n/ja/README.md)
+
 # fastlane-plugin-validate_ipa
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
 [![Gem Version](https://img.shields.io/gem/v/fastlane-plugin-validate_ipa?style=flat)](https://rubygems.org/gems/fastlane-plugin-validate_ipa)
 
-A [fastlane](https://github.com/fastlane/fastlane) plugin that validates IPA files using Apple's `altool` before uploading to App Store Connect. This plugin improves upon the unmaintained [validate_app](https://github.com/fastlane-community/fastlane-plugin-validate_app) plugin.
+A [fastlane](https://github.com/fastlane/fastlane) plugin that validates IPA files with Apple's `altool` before they are uploaded to App Store Connect. This plugin is a maintained replacement for the unmaintained [validate_app](https://github.com/fastlane-community/fastlane-plugin-validate_app) plugin.
 
 ## Features
 
-- **IPA file validation** — Verifies file existence and extension before running altool
-- **Structured error reporting** — Parses altool XML output and displays numbered error list with failure reasons
-- **Fallback error handling** — Gracefully handles missing fields, empty responses, and unparseable output
-- **Sensitive parameter masking** — Passwords are masked in fastlane logs
+- IPA file validation - verifies file existence and extension before running altool
+- Structured error reporting - parses altool XML output and displays a numbered error list with failure reasons
+- Fallback error handling - gracefully handles missing fields, empty responses, and unparseable output
+- Sensitive parameter masking - passwords are masked in fastlane logs
 
 ## Installation
 
@@ -18,7 +20,7 @@ A [fastlane](https://github.com/fastlane/fastlane) plugin that validates IPA fil
 fastlane add_plugin validate_ipa
 ```
 
-Or add to your `Gemfile`:
+Or add it to your `Gemfile`:
 
 ```ruby
 gem 'fastlane-plugin-validate_ipa'
